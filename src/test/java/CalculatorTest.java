@@ -31,6 +31,19 @@ public class CalculatorTest {
     }
 
     @Test
+    public void addCommandAfterUndo() {
+        Calculator calculator = new Calculator();
+        BigDecimal res = calculator.add(new BigDecimal("1.1"))
+                .sub(new BigDecimal("2"))
+                .mul(new BigDecimal("3"))
+                .undo()
+                .add(new BigDecimal("1"))
+                .div(new BigDecimal("10"))
+                .calc();
+        Assert.assertEquals(new BigDecimal("-0.8").compareTo(res), 0);
+    }
+
+    @Test
     public void redo() {
         Assert.assertThrows(RuntimeException.class, ()-> {
             Calculator calculator = new Calculator();

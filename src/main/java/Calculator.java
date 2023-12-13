@@ -49,7 +49,11 @@ public class Calculator {
 
 
     private void addCommand(Command command) {
-        this.commandList.add(this.commandPos, command);
+        if(this.commandPos < this.commandSize) {
+            this.commandList.set(this.commandPos, command);
+        } else {
+            this.commandList.add(command);
+        }
         this.commandPos++;
         this.commandSize = this.commandPos;
     }
